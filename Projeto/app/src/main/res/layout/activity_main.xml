@@ -8,14 +8,14 @@
 
     <ImageView
         android:id="@+id/backgroundMenuView"
-        android:layout_width="901dp"
-        android:layout_height="737dp"
+        android:layout_width="1336dp"
+        android:layout_height="886dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.529"
         app:srcCompat="@drawable/menu_background_dark_forest" />
 
     <ImageButton
@@ -35,6 +35,7 @@
         android:layout_width="186dp"
         android:layout_height="176dp"
         android:background="#00FFFFFF"
+        android:onClick="startGame"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
