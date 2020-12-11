@@ -1,6 +1,10 @@
 package com.example.dispositivosmoveis;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -21,7 +25,6 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
     private int points = 0;
     private TextView pointsText;
     private TextView timerText;
-    private String timerTextToShow;
 
     private final ArrayList<ImageButton> moles = new ArrayList<>();
     private int maxSize;
@@ -61,6 +64,28 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFinish() {
+                SharedPreferences prefs = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putInt("LastScore", points);
+                for(int i = 0; i < 5; i++)
+                {
+                    int rankPoint = prefs.getInt("Rank" + i, 0);
+                    if(points > rankPoint)
+                    {
+                        for(int j = i; j < 5; j++)
+                        {
+                            int lastRankPoint = prefs.getInt("Rank" + j, 0);
+                            if(lastRankPoint >= prefs.getInt("Rank" + (j + 1), 0))
+                            {
+                                editor.putInt("Rank" + (j + 1), lastRankPoint);
+                            }
+                        }
+                        editor.putInt("Rank" + i, points);
+                        break;
+                    }
+                }
+                editor.apply();
+
                 changeActivity(ActivityEndGame.class);
             }
         }.start();
@@ -97,7 +122,7 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
 
     private void updateTimer()
     {
-        timerTextToShow = " " + count;
+        String timerTextToShow = " " + count;
         timerText.setText(timerTextToShow);
     }
 
@@ -149,6 +174,11 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
     public void restartGame(View view)
     {
         changeActivity(ActivityGame.class);
+    }
+
+    private Context getContext()
+    {
+        return this;
     }
 
     @Override
