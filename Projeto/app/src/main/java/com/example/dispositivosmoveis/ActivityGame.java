@@ -1,18 +1,23 @@
 package com.example.dispositivosmoveis;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,6 +33,9 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
 
     private final ArrayList<ImageButton> moles = new ArrayList<>();
     private int maxSize;
+
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,10 +71,15 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
             }
 
             @Override
-            public void onFinish() {
+            public void onFinish()
+            {
+                database = FirebaseDatabase.getInstance();
+                reference = database.getReference("Rank");
+
                 SharedPreferences prefs = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putInt("LastScore", points);
+
                 for(int i = 0; i < 5; i++)
                 {
                     int rankPoint = prefs.getInt("Rank" + i, 0);
@@ -85,6 +98,44 @@ public class ActivityGame extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 editor.apply();
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(int i = 0; i < 5; i++)
+                        {
+                            String scoreSaved = snapshot.child(String.valueOf(i)).child("score").getValue(String.class);
+                            if(points > Integer.parseInt(scoreSaved))
+                            {
+                                String nickname = prefs.getString("Nickname", "?");
+                                String score = String.valueOf(points);
+                                UserHelperClass helperClass;
+
+                                for(int j = i; j < 5; j++)
+                                {
+                                    if(j + 1 < 5)
+                                    {
+                                        int lastRankPoint = Integer.parseInt(snapshot.child(String.valueOf(j)).child("score").getValue(String.class));
+                                        int plusOne = Integer.parseInt(snapshot.child(String.valueOf(j + 1)).child("score").getValue(String.class));
+                                        if(lastRankPoint >= plusOne)
+                                        {
+                                            String lastRankNickname =  snapshot.child(String.valueOf(j)).child("nickname").getValue(String.class);
+                                            helperClass = new UserHelperClass(lastRankNickname, String.valueOf(lastRankPoint));
+                                            reference.child(String.valueOf(j + 1)).setValue(helperClass);
+                                        }
+                                    }
+                                }
+                                helperClass = new UserHelperClass(nickname, score);
+                                reference.child(String.valueOf(i)).setValue(helperClass);
+                                break;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        System.out.println("Foi cancelado.");
+                    }
+                });
 
                 changeActivity(ActivityEndGame.class);
             }

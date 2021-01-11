@@ -62,15 +62,58 @@
 
     <ImageButton
         android:id="@+id/helpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="16dp"
         android:background="#00FFFFFF"
         android:scaleType="centerCrop"
+        android:onClick="goToGlobalRank"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/help_button" />
+        app:srcCompat="@drawable/rank_button" />
+
+    <TextView
+        android:id="@+id/nicknameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="@string/nickname"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/helpButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playButton" />
+
+    <EditText
+        android:id="@+id/nicknameID"
+        android:layout_width="131dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="?"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/helpButton"
+        app:layout_constraintStart_toEndOf="@+id/nicknameText"
+        app:layout_constraintTop_toBottomOf="@+id/playButton"
+        app:layout_constraintVertical_bias="0.518" />
+
+    <Button
+        android:id="@+id/changeNicknameButton"
+        android:layout_width="94dp"
+        android:layout_height="62dp"
+        android:onClick="changeNickname"
+        android:text="Mudar"
+        app:layout_constraintBottom_toTopOf="@+id/settingsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toEndOf="@+id/nicknameID"
+        app:layout_constraintTop_toBottomOf="@+id/playButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

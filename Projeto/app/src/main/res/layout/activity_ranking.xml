@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityEndGame">
+    tools:context=".ActivityRanking">
 
     <ImageView
-        android:id="@+id/backgroundEndGame"
+        android:id="@+id/backgroundRank"
         android:layout_width="1336dp"
         android:layout_height="886dp"
         android:scaleType="centerCrop"
@@ -20,25 +20,10 @@
         app:srcCompat="@drawable/menu_background_dark_forest" />
 
     <TextView
-        android:id="@+id/titleTimeOver"
+        android:id="@+id/lastPointsTextRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:fontFamily="casual"
-        android:text="Tempo acabou!"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/lastPointsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="76dp"
         android:fontFamily="casual"
         android:text="Pontos: 10"
         android:textColor="#FFFFFF"
@@ -46,25 +31,24 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTimeOver" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/titleRankingLocal"
+        android:id="@+id/titleRankingGlobal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="casual"
-        android:text="Ranking local"
+        android:text="Ranking global"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastPointsText" />
+        app:layout_constraintTop_toBottomOf="@+id/lastPointsTextRanking" />
 
     <TextView
-        android:id="@+id/ranking_local_0"
+        android:id="@+id/ranking_global_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -75,10 +59,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleRankingLocal" />
+        app:layout_constraintTop_toBottomOf="@+id/titleRankingGlobal" />
 
     <TextView
-        android:id="@+id/ranking_local_1"
+        android:id="@+id/ranking_global_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
@@ -89,94 +73,62 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ranking_local_0" />
+        app:layout_constraintTop_toBottomOf="@+id/ranking_global_0" />
 
     <TextView
-        android:id="@+id/ranking_local_2"
+        android:id="@+id/ranking_global_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:text="3: 13"
+        android:text="2: 13"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ranking_local_1" />
+        app:layout_constraintTop_toBottomOf="@+id/ranking_global_1" />
 
     <TextView
-        android:id="@+id/ranking_local_3"
+        android:id="@+id/ranking_global_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:text="4: 13"
+        android:text="2: 13"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ranking_local_2" />
+        app:layout_constraintTop_toBottomOf="@+id/ranking_global_2" />
 
     <TextView
-        android:id="@+id/ranking_local_4"
+        android:id="@+id/ranking_global_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:text="5: 13"
+        android:text="2: 13"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ranking_local_3" />
+        app:layout_constraintTop_toBottomOf="@+id/ranking_global_3" />
 
     <ImageButton
-        android:id="@+id/menuButton_End"
-        android:layout_width="86dp"
-        android:layout_height="86dp"
-        android:layout_marginBottom="40dp"
+        android:id="@+id/menuButton_Rank"
+        android:layout_width="121dp"
+        android:layout_height="110dp"
+        android:layout_marginBottom="36dp"
         android:background="#00FFFFFF"
         android:onClick="changeActivity"
         android:scaleType="fitCenter"
         android:tint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/menu_button" />
-
-    <ImageButton
-        android:id="@+id/rankButton_End"
-        android:layout_width="86dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginBottom="40dp"
-        android:background="#00FFFFFF"
-        android:onClick="changeActivity"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/menuButton_End"
-        app:srcCompat="@drawable/rank_button" />
-
-    <ImageButton
-        android:id="@+id/restartButton_End"
-        android:layout_width="86dp"
-        android:layout_height="86dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:layout_marginBottom="40dp"
-        android:background="#00FFFFFF"
-        android:onClick="changeActivity"
-        android:scaleType="fitCenter"
-        android:tint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/rankButton_End"
-        app:srcCompat="@drawable/restart_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
